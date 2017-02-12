@@ -4,16 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --bail",
+    "test": "mocha sum.test.js --watch --bail",
     "exec": "exec"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-jest": "^18.0.0",
-    "babel-polyfill": "^6.22.0",
-    "babel-preset-airbnb": "^2.2.3",
-    "jest": "^18.1.0"
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
