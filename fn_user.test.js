@@ -4,8 +4,9 @@ const assert  = require('chai').assert
 const newUser = require('./fn_user')
 
 describe("Recreating objects with single-argument functions, A challenge for Regis! <3", function() {
-  let name = 'Josh', email = 'josh@example.com', age = 33
-  let user = newUser(name)(age)(email)
+  const name = 'Josh', email = 'josh@example.com', age = 33
+  let user
+  beforeEach(() => user = newUser(name)(age)(email))
 
   it('lets me provide the name, age, and returns a function that accepts messages', function() {
     assert.equal(user.constructor, Function)
