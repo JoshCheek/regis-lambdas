@@ -1,50 +1,11 @@
 'use strict'
 
-/*
-class User
-  attr_accessor :name, :age, :email
-
-  def initialize(name, age, email)
-    self.name, self.age, self.email = name, age, email
-  end
-
-  def birthday
-    @age += 1
-    self
-  end
-
-  def contact_info
-    %'\"#{@name}" <#{@email}>'
-  end
-end
-
-user = User.new 'Josh', 33, 'josh@example.com'
-
-# Getters
-user.name         # => "Josh"
-user.age          # => 33
-user.email        # => "josh@example.com"
-user.contact_info # => "\"Josh\" <josh@example.com>"
-
-# Setters (Alan Kay is grimacing)
-user.name  = 'Regis'
-user.age   = 123 # idk
-user.email = 'regis@example.com'
-
-user.contact_info # => "\"Regis\" <regis@example.com>"
-
-# methods that modify it
-user.birthday  # => #<User:0x007fe6b38ed540 @name="Regis", @age=124, @email="regis@example.com">
-user.birthday  # => #<User:0x007fe6b38ed540 @name="Regis", @age=125, @email="regis@example.com">
-user.birthday  # => #<User:0x007fe6b38ed540 @name="Regis", @age=126, @email="regis@example.com">
-*/
-
 const assert  = require('chai').assert
 const newUser = require('./fn_user')
 
-describe("Recreating objects with functions, A challenge for Regis! <3", function() {
+describe("Recreating objects with single-argument functions, A challenge for Regis! <3", function() {
   let name = 'Josh', email = 'josh@example.com', age = 33
-  let user = newUser(name, age, email)
+  let user = newUser(name)(age)(email)
 
   it('lets me provide the name, age, and returns a function that accepts messages', function() {
     assert.equal(user.constructor, Function)
@@ -63,13 +24,16 @@ describe("Recreating objects with functions, A challenge for Regis! <3", functio
     const name2 = 'Regis', email2 = 'regis@example.com', age2 = 123
 
     it('returns a new user with that attr set, they don\'t modify the existing one', () => {
-      const user2 = user('name=', name2)
+      const user2 = user('name=')(name2)
       assert.equal(user2('name'), name2)
       assert.equal(user('name'),  name)
     })
 
     it('has setters for the name, age, and email', () => {
-      const newUser = user('name=', name2)('age=', age2)('email=', email2)
+      const newUser = user('name=')(name2)
+                          ('age=')(age2)
+                          ('email=')(email2)
+
       assert.equal(newUser('name'),  name2)
       assert.equal(newUser('age'),   age2)
       assert.equal(newUser('email'), email2)

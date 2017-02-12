@@ -1,18 +1,19 @@
+const newUser = name => age => email =>
+  message =>
+    "name"        === message ? name :
+    "age"         === message ? age :
+    "email"       === message ? email :
+    "name="       === message ? name  => newUser(name)(age)(email) :
+    "age="        === message ? age   => newUser(name)(age)(email) :
+    "email="      === message ? email => newUser(name)(age)(email) :
+    "contactInfo" === message ? `"${name}" <${email}>` :
+    "birthday"    === message ? newUser(name)(age+1)(email) :
+    err(`NoMethodError: ${message}`)
+
 module.exports = newUser
 
-function newUser(name, age, email) {
-  return (message, ...params) => {
-    switch(message) {
-      case "name":        return name
-      case "age":         return age
-      case "email":       return email
-      case "name=":       return newUser(params[0], age, email)
-      case "age=":        return newUser(name, params[0], email)
-      case "email=":      return newUser(name, age, params[0])
-      case "contactInfo": return `"${name}" <${email}>`
-      case "birthday":    return newUser(name, age+1, email)
-      default: throw(`NoMethodError: ${message}`)
-    }
-  }
+// Just wraps `throw` in a function b/c JS parsing is kind of stupid and won't
+// let you put throw in an expression
+function err(msg) {
+  throw(msg)
 }
-
