@@ -43,12 +43,15 @@ const assert  = require('chai').assert
 const newUser = require('./fn_user')
 
 describe("Recreating objects with functions, A challenge for Regis! <3", function() {
-  const name = 'Josh', email = 'josh@example.com.', age = 33
-  const user = newUser(name, age, email)
+  let name = 'Josh', email = 'josh@example.com', age = 33
+  let user = newUser(name, age, email)
 
   it('lets me provide the name, age, and returns a function that accepts messages', function() {
-    assert.equal(user.constructor, 'Function')
+    assert.equal(user.constructor, Function)
   })
+
+  it('throws an error when it gets a message its not expecting', () =>
+    assert.throws(() => user('unknown message'), /NoMethodError/))
 
   describe('getters', function() {
     it('can get the name',  () => assert.equal(user('name'),  name))
@@ -60,9 +63,9 @@ describe("Recreating objects with functions, A challenge for Regis! <3", functio
     const name2 = 'Regis', email2 = 'regis@example.com', age2 = 123
 
     it('returns a new user with that attr set, they don\'t modify the existing one', () => {
-      const newUser = user('name=', name2)
-      assert.equal(   user('name'), name1)
-      assert.equal(newUser('name'), name2)
+      const user2 = user('name=', name2)
+      assert.equal(user2('name'), name2)
+      assert.equal(user('name'),  name)
     })
 
     it('has setters for the name, age, and email', () => {
@@ -86,7 +89,4 @@ describe("Recreating objects with functions, A challenge for Regis! <3", functio
       assert.equal(age+1, olderUser('age'))
     })
   })
-
-  it('throws an error when it gets a message its not expecting', () =>
-    assert.throws(() => user('unknown message'), /NoMethodError/))
 })
