@@ -26,19 +26,22 @@ end
 user = User.new 'Josh', 33, 'josh@example.com'
 
 # Getters
-user.name   # => "Josh"
-user.age    # => 33
-user.email  # => "josh@example.com"
+user.name         # => "Josh"
+user.age          # => 33
+user.email        # => "josh@example.com"
+user.contact_info # => "\"Josh\" <josh@example.com>"
 
 # Setters (Alan Kay is grimacing)
 user.name  = 'Regis'
 user.age   = 123 # idk
 user.email = 'regis@example.com'
 
+user.contact_info # => "\"Regis\" <regis@example.com>"
+
 # methods that modify it
-user.birthday  # => #<User:0x007fcfa2069e28 @name="Regis", @age=124, @email="regis@example.com">
-user.birthday  # => #<User:0x007fcfa2069e28 @name="Regis", @age=125, @email="regis@example.com">
-user.birthday  # => #<User:0x007fcfa2069e28 @name="Regis", @age=126, @email="regis@example.com">
+user.birthday  # => #<User:0x007fe6b38ed540 @name="Regis", @age=124, @email="regis@example.com">
+user.birthday  # => #<User:0x007fe6b38ed540 @name="Regis", @age=125, @email="regis@example.com">
+user.birthday  # => #<User:0x007fe6b38ed540 @name="Regis", @age=126, @email="regis@example.com">
 ```
 
 
