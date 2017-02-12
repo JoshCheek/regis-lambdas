@@ -51,3 +51,9 @@ Setup
 * Clone the repo
 * Run `npm install` to get deps
 * Run `npm test` to start the test suite
+
+
+Solution
+--------
+
+My solution is in the branch `josh-solution`
