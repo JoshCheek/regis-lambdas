@@ -1,10 +1,10 @@
-const sum = require('./sum');
+import sum from './sum';
 
-describe("a", () => {
+describe("quick test", () => {
   it("passes", () =>
     expect(true).toEqual(true))
-  it("fails", () =>
-    expect(true).toEqual(false))
+  // it("fails", () =>
+  //   expect(true).toEqual(false))
 })
 
 test('adds 1 + 2 to equal 3', () => {
